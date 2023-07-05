@@ -13,7 +13,7 @@ class FavCubit extends Cubit<FavState> {
       : _repo = repo,
         super(FavInitial());
 
-  Resource<List<Results>> resource1 = Resource(status: Status.LOADING, data: null, errorMessage: null);
+  Resource<MovieResultModel> resource1 = Resource(status: Status.LOADING, data: null, errorMessage: null);
   Image? image;
   Future<void> getFavorites() async {
     resource1 = await _repo.getFavorites();

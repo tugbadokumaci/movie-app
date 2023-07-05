@@ -4,12 +4,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/widget/text_field_utils.dart';
 import 'package:movie_app/pages/signup_page/signup_cubit.dart';
 import 'package:movie_app/pages/signup_page/signup_state.dart';
 import 'package:movie_app/utils/theme_utilitys.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../utils/utils.dart';
+import '../../widget/bg_image_utils.dart';
+import '../../widget/button_utils.dart';
 
 class SignupView extends StatefulWidget {
   final SignupCubit viewModel;
@@ -96,7 +97,7 @@ class _SignupViewState extends State<SignupView> {
           mySizedBoxSmall(),
           passwordField(width: 350),
           mySizedBoxSmall(),
-          MyButton().myRedButton(
+          MyButtonWidget(
             context: context,
             height: 50,
             width: 350,
@@ -113,56 +114,65 @@ class _SignupViewState extends State<SignupView> {
   Widget nameField({required double width}) {
     return SizedBox(
       width: width,
-      child: MyFormFields().nameTextFormField(
-          validatorCallback: ((value) {
-            if (value!.isEmpty) {
-              return "name can't be null";
-            } else {}
-            return null;
-          }),
-          controller: widget.viewModel.getNameController),
+      child: MyTextFieldWidget(
+        validatorCallback: ((value) {
+          if (value!.isEmpty) {
+            return "name can't be null";
+          } else {}
+          return null;
+        }),
+        controller: widget.viewModel.getNameController,
+        labelText: 'Name',
+      ),
     );
   }
 
   Widget surnameField({required double width}) {
     return SizedBox(
       width: width,
-      child: MyFormFields().surnameTextFormField(
-          validatorCallback: ((value) {
-            if (value!.isEmpty) {
-              return "surname can't be null";
-            } else {}
-            return null;
-          }),
-          controller: widget.viewModel.getSurnameController),
+      child: MyTextFieldWidget(
+        validatorCallback: ((value) {
+          if (value!.isEmpty) {
+            return "surname can't be null";
+          } else {}
+          return null;
+        }),
+        controller: widget.viewModel.getSurnameController,
+        labelText: 'Surname',
+      ),
     );
   }
 
   Widget emailField({required double width}) {
     return SizedBox(
       width: width,
-      child: MyFormFields().emailTextFormField(
-          validatorCallback: ((value) {
-            if (value!.isEmpty) {
-              return "email can't be null";
-            } else {}
-            return null;
-          }),
-          controller: widget.viewModel.getEmailController),
+      child: MyTextFieldWidget(
+        validatorCallback: ((value) {
+          if (value!.isEmpty) {
+            return "email can't be null";
+          } else {}
+          return null;
+        }),
+        controller: widget.viewModel.getEmailController,
+        labelText: 'Email',
+      ),
     );
   }
 
   Widget passwordField({required double width}) {
     return SizedBox(
       width: width,
-      child: MyFormFields().passwordTextFormField(
-          validatorCallback: ((value) {
-            if (value!.isEmpty) {
-              return "password can't be null";
-            } else {}
-            return null;
-          }),
-          controller: widget.viewModel.getPasswordController),
+      child: MyTextFieldWidget(
+        validatorCallback: ((value) {
+          if (value!.isEmpty) {
+            return "password can't be null";
+          } else {}
+          return null;
+        }),
+        controller: widget.viewModel.getPasswordController,
+        labelText: 'Password',
+        isSecure: true,
+      ),
     );
   }
 

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/utils/theme_utilitys.dart';
-import 'package:movie_app/utils/utils.dart';
+import '../../widget/button_utils.dart';
 import 'detail_cubit.dart';
 import 'detail_state.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -63,9 +63,7 @@ class DetailView extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Container(
-                  child: Image.network('https://image.tmdb.org/t/p/original${viewModel.resource2.data!.backdropPath}'),
-                ),
+                movieImage(),
                 mySizedBoxMedium(),
                 Text(viewModel.resource2.data!.originalTitle ?? '',
                     textAlign: TextAlign.center,
@@ -92,7 +90,7 @@ class DetailView extends StatelessWidget {
                   ],
                 ),
                 mySizedBoxMedium(),
-                MyButton().myRedButton(
+                MyButtonWidget(
                     context: context,
                     height: 50,
                     width: 350,
@@ -133,10 +131,13 @@ class DetailView extends StatelessWidget {
     );
   }
 
-  void listener() {
-    debugPrint('on ready controller values:::::: ${viewModel.controller.toString()}');
-    debugPrint('on ready controller videoId:::::: ${viewModel.controller!.initialVideoId}');
+  Container movieImage() {
+    return Container(
+      child: Image.network('https://image.tmdb.org/t/p/original${viewModel.resource2.data!.backdropPath}'),
+    );
+  }
 
+  void listener() {
     if (viewModel.controller!.value.isReady) {
       viewModel.controller!.play();
     }

@@ -14,7 +14,7 @@ class FavRepository {
   FavRepository(this.client);
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<Resource<List<Results>>> getFavorites() async {
+  Future<Resource<MovieResultModel>> getFavorites() async {
     List<Results> favMovieList = [];
 
     try {
@@ -33,7 +33,7 @@ class FavRepository {
         'favList': favList,
       });
 
-      return Resource.success(favMovieList);
+      return Resource.success(MovieResultModel(results: favMovieList));
     } catch (e) {
       return Resource.error(e.toString());
     }

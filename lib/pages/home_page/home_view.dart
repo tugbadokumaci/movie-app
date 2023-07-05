@@ -7,7 +7,8 @@ import 'package:movie_app/utils/theme_utilitys.dart';
 import '../../inheritance/mixin_logout.dart';
 import '../../models/genre_model.dart';
 import '../../utils/resource.dart';
-import '../../utils/utils.dart';
+import '../../widget/movie_containers_utils.dart';
+import '../../widget/navigator_utils.dart';
 import 'home_cubit.dart';
 import 'home_state.dart';
 

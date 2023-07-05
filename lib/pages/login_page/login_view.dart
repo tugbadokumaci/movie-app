@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/widget/text_field_utils.dart';
 import 'package:movie_app/utils/theme_utilitys.dart';
-import '../../utils/utils.dart';
+import '../../widget/bg_image_utils.dart';
+import '../../widget/button_utils.dart';
 import 'login_cubit.dart';
 import 'login_state.dart';
 
@@ -55,7 +57,6 @@ class LoginView extends StatelessWidget {
             } else if (state is LoginLoading) {
               // return _buildLoading();
             } else if (state is LoginSuccess) {
-              debugPrint('Login successssss');
               return Container();
             }
             // else if (state is LoginError) {
@@ -76,7 +77,7 @@ class LoginView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            titleText(context),
+            projectNameTitle(context),
             mySizedBoxLarge(),
             // SizedBox(width: 350, child: emailField()),
             emailField(350),
@@ -88,16 +89,7 @@ class LoginView extends StatelessWidget {
             mySizedBoxMedium(),
             Text('Social Logins', style: Theme.of(context).textTheme.titleMedium),
             mySizedBoxSmall(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.facebook, color: Colors.red, size: IconSizes.medium),
-                mySizedBoxSmall(),
-                Icon(Icons.telegram, color: Colors.red, size: IconSizes.medium),
-                mySizedBoxSmall(),
-                Icon(Icons.reddit, color: Colors.red, size: IconSizes.medium),
-              ],
-            ),
+            socialLogins(),
             mySizedBoxMedium(),
             Column(
               children: [
@@ -115,36 +107,80 @@ class LoginView extends StatelessWidget {
     ));
   }
 
+  Row socialLogins() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.facebook, color: Colors.red, size: IconSizes.medium),
+        mySizedBoxSmall(),
+        Icon(Icons.telegram, color: Colors.red, size: IconSizes.medium),
+        mySizedBoxSmall(),
+        Icon(Icons.reddit, color: Colors.red, size: IconSizes.medium),
+      ],
+    );
+  }
+
   Widget emailField(double width) {
     return SizedBox(
-      width: width,
-      child: MyFormFields().emailTextFormField(
-          validatorCallback: ((value) {
-            if (value!.isEmpty) {
-              return "email can't be null";
-            } else {
-              return null;
-            }
-          }),
-          controller: viewModel.getEmailController),
-    );
+        width: width,
+        child: MyTextFieldWidget(
+            validatorCallback: ((value) {
+              if (value!.isEmpty) {
+                return "email can't be null";
+              } else {
+                return null;
+              }
+            }),
+            controller: viewModel.getEmailController,
+            labelText: 'Email'));
   }
 
   Widget passwordField(double width) {
     return SizedBox(
       width: width,
-      child: MyFormFields().passwordTextFormField(
-          validatorCallback: ((value) {
-            if (value!.isEmpty) {
-              return "password can't be null";
-            } else {}
-            return null;
-          }),
-          controller: viewModel.getPasswordController),
+      child: MyTextFieldWidget(
+        validatorCallback: ((value) {
+          if (value!.isEmpty) {
+            return "password can't be null";
+          } else {}
+          return null;
+        }),
+        controller: viewModel.getPasswordController,
+        labelText: 'Password',
+        isSecure: true,
+      ),
     );
   }
+  //   Widget emailField(double width) {
+  //   return SizedBox(
+  //     width: width,
+  //     child: MyFormFields().emailTextFormField(
+  //         validatorCallback: ((value) {
+  //           if (value!.isEmpty) {
+  //             return "email can't be null";
+  //           } else {
+  //             return null;
+  //           }
+  //         }),
+  //         controller: viewModel.getEmailController),
+  //   );
+  // }
 
-  Row titleText(BuildContext context) {
+  // Widget passwordField(double width) {
+  //   return SizedBox(
+  //     width: width,
+  //     child: MyFormFields().passwordTextFormField(
+  //         validatorCallback: ((value) {
+  //           if (value!.isEmpty) {
+  //             return "password can't be null";
+  //           } else {}
+  //           return null;
+  //         }),
+  //         controller: viewModel.getPasswordController),
+  //   );
+  // }
+
+  Row projectNameTitle(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -172,7 +208,7 @@ class LoginView extends StatelessWidget {
           }
           // signIn(context);
         },
-        child: MyButton().myRedButton(
+        child: MyButtonWidget(
           context: context,
           height: 50,
           width: 350,

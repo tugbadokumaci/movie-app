@@ -8,7 +8,8 @@ import 'package:movie_app/utils/constants.dart';
 
 import '../../inheritance/mixin_logout.dart';
 import '../../utils/theme_utilitys.dart';
-import '../../utils/utils.dart';
+import '../../widget/movie_containers_utils.dart';
+import '../../widget/navigator_utils.dart';
 
 class SearchView extends StatelessWidget with ILogout {
   SearchCubit viewModel;
