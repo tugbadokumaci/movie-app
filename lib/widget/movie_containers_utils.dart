@@ -57,11 +57,12 @@ Widget horizontalMovieContainer(Resource<MovieResultModel> resource) {
   return Container();
 }
 
-Widget verticalMovieContainer(
-  Resource<MovieResultModel> resource,
-  BuildContext context,
-  String isEmptyMessage,
-) {
+Widget verticalMovieContainer(Resource<MovieResultModel> resource, BuildContext context, String isEmptyMessage,
+    {void Function(int movieId)? myFunc}) {
+  myFunc ??= (int movieId) {
+    Navigator.pushNamed(context, '/detail', arguments: movieId);
+  };
+
   if (resource.status == Status.LOADING) {
     return const CircularProgressIndicator();
   } else if (resource.status == Status.SUCCESS) {
@@ -75,8 +76,13 @@ Widget verticalMovieContainer(
           final movie = resource.data!.results![index];
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/detail', arguments: movie.id);
+              if (myFunc != null) {
+                myFunc(movie.id ?? 0);
+              }
             },
+            // onTap: () {
+            //   Navigator.pushNamed(context, '/detail', arguments: movie.id);
+            // },
             child: Padding(
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Container(

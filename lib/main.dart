@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           textTheme: Typography(platform: TargetPlatform.iOS).white,
           // textTheme: Typography.whiteCupertino,
           colorScheme: const ColorScheme.light().copyWith(primary: Colors.red),
-          bottomAppBarTheme: BottomAppBarTheme(shape: CircularNotchedRectangle()),
+          bottomAppBarTheme: const BottomAppBarTheme(shape: CircularNotchedRectangle()),
           progressIndicatorTheme: const ProgressIndicatorThemeData(color: Colors.red),
           iconTheme: const IconThemeData(color: Colors.red),
           inputDecorationTheme: InputDecorationTheme(

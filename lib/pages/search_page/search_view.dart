@@ -47,7 +47,7 @@ class SearchView extends StatelessWidget with ILogout {
                   icon: const Icon(Icons.search, color: Colors.white),
                   onPressed: () {
                     // Navigator.pushNamed(context, '/search');
-                    navigateToNewRoute(context, searchRoute);
+                    navigateToNewRoute(context, searchRoute, null);
                   },
                 ),
                 IconButton(

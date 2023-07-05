@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget with ILogout {
             backgroundColor: CustomColors.darkGrey,
             onPressed: () {
               // Navigator.pushNamed(context, '/');
-              navigateToNewRoute(context, '/');
+              navigateToNewRoute(context, '/', null);
             },
             child: const Icon(Icons.home, color: Colors.white),
           ),
@@ -73,21 +73,21 @@ class HomeView extends StatelessWidget with ILogout {
                     icon: const Icon(Icons.search, color: Colors.white),
                     onPressed: () {
                       // Navigator.pushNamed(context, '/search');
-                      navigateToNewRoute(context, '/search');
+                      navigateToNewRoute(context, '/search', null);
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.favorite, color: Colors.white),
                     onPressed: () {
                       // Navigator.pushNamed(context, '/fav');
-                      navigateToNewRoute(context, '/fav');
+                      navigateToNewRoute(context, '/fav', null);
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.logout_outlined, color: Colors.white),
                     onPressed: () {
                       logout();
-                      navigateToNewRoute(context, '/logIn');
+                      navigateToNewRoute(context, '/logIn', null);
                       // Navigator.pushNamed(context, '/logIn');
                       // Navigator.pushNamed(context, '/settings');
                     },

@@ -13,7 +13,7 @@ class LoginView extends StatelessWidget {
   final LoginCubit viewModel;
   LoginView({super.key, required this.viewModel});
 
-  final formKey = GlobalKey<FormState>();
+  static final formKey = GlobalKey<FormState>(); // for keyboard to not shout down imidiatly
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;

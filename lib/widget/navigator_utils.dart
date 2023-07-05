@@ -21,11 +21,15 @@ mixin NavigatorManager {
   }
 }
 
-void navigateToNewRoute(BuildContext context, String newRouteName) {
+void navigateToNewRoute(
+  BuildContext context,
+  String newRouteName,
+  Object? arguments,
+) async {
   final currentRoute = ModalRoute.of(context)?.settings.name;
   debugPrint(currentRoute); // null
   debugPrint(newRouteName);
   if (currentRoute != newRouteName) {
-    Navigator.pushNamed(context, newRouteName);
+    await Navigator.pushNamed(context, newRouteName);
   }
 }

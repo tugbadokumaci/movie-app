@@ -29,6 +29,7 @@ class RouteGenerator {
     switch (settings.name) {
       case loginRoute:
         return MaterialPageRoute(
+            settings: settings,
             builder: (_) => LoginView(
                   viewModel: LoginCubit(repo: locator.get<LoginRepository>()),
                 ));
